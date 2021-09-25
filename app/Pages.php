@@ -15,4 +15,15 @@ class Pages extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getCurrentUser($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            return [$user->id => $user->name];
+        }
+
+        return 0;
+    }
 }

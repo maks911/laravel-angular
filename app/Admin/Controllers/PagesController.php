@@ -14,6 +14,11 @@ use Encore\Admin\Show;
  */
 class PagesController extends AdminController
 {
+    private $metaVariants = [
+        1 => 'text',
+        2 => 'json'
+    ];
+
     /**
      * @var string
      */
@@ -72,7 +77,16 @@ class PagesController extends AdminController
             $form->textarea('url', __('Url'));
             $form->textarea('title', __('Title'));
             $form->select('user_id')->options(function ($id) {
-                $this->getUser($id);
+                $user = User::find($id);
+                if ($user) {
+                    return [$user->id => $user->name];
+                } else {
+                    $users = [];
+                    foreach (User::all() as $user) {
+                        $users[$user['id']] = $user['name'];
+                    }
+                    return $users;
+                }
             });
 
         })->tab(__('Meta Fields'), function ($form) {
@@ -80,22 +94,11 @@ class PagesController extends AdminController
             $form->hasMany('meta', function ($form) {
                 $form->text('metakey');
                 $form->textarea('metavalue');
-                $form->textarea('metatype');
+                $form->select('metatype')->options($this->metaVariants);
             });
 
         });
 
         return $form;
-    }
-
-    private function getUser($id)
-    {
-        $user = User::find($id);
-
-        if ($user) {
-            return [$user->id => $user->name];
-        }
-
-        return 0;
     }
 }
