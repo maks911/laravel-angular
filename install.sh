@@ -13,5 +13,9 @@ docker-compose exec app php artisan admin:make PagesController --model=App\\Page
 docker-compose exec app php artisan make:model Meta
 docker-compose exec app php artisan admin:make PagesController --model=App\\Meta
 docker-compose exec app php artisan migrate
+docker-compose exec app php artisan make:factory PagesFactory
+docker-compose exec app php artisan make:factory MetaFactory
+docker-compose exec app php artisan make:controller PagesController
+docker-compose exec app php artisan route:list
 
 
