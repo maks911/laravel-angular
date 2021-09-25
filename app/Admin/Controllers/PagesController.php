@@ -71,22 +71,13 @@ class PagesController extends AdminController
     protected function form()
     {
         $form = new Form(new Pages());
-
-        $form->tab(__('Basic info'), function ($form) {
+        $that = $this;
+        $form->tab(__('Basic info'), function ($form) use ($that) {
 
             $form->textarea('url', __('Url'));
             $form->textarea('title', __('Title'));
-            $form->select('user_id')->options(function ($id) {
-                $user = User::find($id);
-                if ($user) {
-                    return [$user->id => $user->name];
-                } else {
-                    $users = [];
-                    foreach (User::all() as $user) {
-                        $users[$user['id']] = $user['name'];
-                    }
-                    return $users;
-                }
+            $form->select('user_id')->options(function ($id) use ($that) {
+                return $that->getUsersForSelect($id);
             });
 
         })->tab(__('Meta Fields'), function ($form) {
@@ -100,6 +91,24 @@ class PagesController extends AdminController
         });
 
         return $form;
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    private function getUsersForSelect($id) : array
+    {
+        $user = User::find($id);
+        if ($user) {
+            return [$user->id => $user->name];
+        } else {
+            $users = [];
+            foreach (User::all() as $user) {
+                $users[$user['id']] = $user['name'];
+            }
+            return $users;
+        }
     }
 }
 
