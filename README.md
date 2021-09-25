@@ -1,2 +1,2 @@
-# laravel-angular
-Laravel + AngularJs SPA project with simple admin panel
+# laravel-angular-docker
+Laravel + AngularJs with docker SPA project + admin panel
