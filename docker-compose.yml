@@ -37,12 +37,19 @@ services:
     container_name: travellist-nginx
     restart: unless-stopped
     ports:
-      - 8000:80
+      - "8000:80"
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
     networks:
       - travellist
+  appserver:
+    image: 'angular-laravel-book'
+    container_name: chapter-10-appserver
+    # Build the image if don't exist
+    build: './client'
+    ports:
+      - "3000:81"
 
 networks:
   travellist:

@@ -10,6 +10,8 @@ docker-compose exec app php artisan admin:install
 docker-compose exec app php artisan admin:make UserController --model=App\\User
 docker-compose exec app php artisan make:model Pages
 docker-compose exec app php artisan admin:make PagesController --model=App\\Pages
-docker-compose exec app php artisan make:migrtion
+docker-compose exec app php artisan make:model Meta
+docker-compose exec app php artisan admin:make PagesController --model=App\\Meta
+docker-compose exec app php artisan migrate
 
 
