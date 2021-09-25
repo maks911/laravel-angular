@@ -1,3 +1,3 @@
-# Travellist - Laravel Demo App
+# Laravel SPA
 
-This is a Laravel 6 demo application to support our Laravel guides.
+SPA website with using of Laravel and Angular Js
