@@ -1,5 +1,6 @@
 *.log
 *.conf
+!docker-compose/nginx/travellist.conf
 *.htaccess
 /node_modules
 /public/hot
