@@ -1,22 +1,7 @@
-<html>
-<head>
-    <title>Travel List</title>
-</head>
+@extends('layouts.master')
 
-<body>
-    <h1>My Travel Bucket List</h1>
-    <h2>Places I'd Like to Visit</h2>
-    <ul>
-      @foreach ($togo as $newplace)
-        <li>{{ $newplace->name }}</li>
-      @endforeach
-    </ul>
+@section('title', 'Page Title')
 
-    <h2>Places I've Already Been To</h2>
-    <ul>
-          @foreach ($visited as $place)
-                <li>{{ $place->name }}</li>
-          @endforeach
-    </ul>
-</body>
-</html>
+@section('content')
+    <p>This is my body content.</p>
+@stop

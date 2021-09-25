@@ -44,8 +44,8 @@ services:
     networks:
       - travellist
   appserver:
-    image: 'angular-laravel-spa'
-    container_name: laravel-spa-appserver
+    image: 'angular-laravel-spa-site'
+    container_name: laravel-spa-client-server
     # Build the image if don't exist
     build: './client'
     ports:
