@@ -10,6 +10,8 @@ import { FeaturesComponent }   from './components/features/features.component';
 import { BenefitsComponent }   from './components/benefits/benefits.component';
 import { ProxyComponent }   from './components/proxy/proxy.component';
 import { NotFoundComponent }   from './not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 // определение маршрутов
 const appRoutes: Routes =[
@@ -22,7 +24,7 @@ const appRoutes: Routes =[
 ];
 
 @NgModule({
-    imports:      [ BrowserModule, RouterModule.forRoot(appRoutes)],
+    imports:      [ BrowserModule, RouterModule.forRoot(appRoutes), HttpClientModule, LazyLoadImageModule],
     declarations: [ AppComponent, TopComponent, MenuComponent, NotFoundComponent, BenefitsComponent, FeaturesComponent, ProxyComponent],
     bootstrap:    [ AppComponent ]
 })

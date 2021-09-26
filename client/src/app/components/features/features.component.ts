@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { DataService } from '../../data.service';
 
 @Component({
     selector: 'ng-features',
@@ -9,91 +10,16 @@ import {Component, OnInit} from '@angular/core';
                     Test Title
                 </h2>
                 <div class="list aos-init aos-animate" data-aos="fade-up">
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
+                    <div ng-repeat="(key, item) in content.features"  class="list_el">
                         <div class="list_el_inner">
                             <div class="list_el_title">
-                                Test Title
+                                {{item.title}}
                             </div>
                             <div class="list_el_description">
-                                Test description
+                                {{item.description}}
                             </div>
                         </div>
                     </div>
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
-                        <div class="list_el_inner">
-                            <div class="list_el_title">
-                                Test Title
-                            </div>
-                            <div class="list_el_description">
-                                Test description
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
-                        <div class="list_el_inner">
-                            <div class="list_el_title">
-                                Test Title
-                            </div>
-                            <div class="list_el_description">
-                                Test description
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
-                        <div class="list_el_inner">
-                            <div class="list_el_title">
-                                Test Title
-                            </div>
-                            <div class="list_el_description">
-                                Test description
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
-                        <div class="list_el_inner">
-                            <div class="list_el_title">
-                                Test Title
-                            </div>
-                            <div class="list_el_description">
-                                Test description
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
-                        <div class="list_el_inner">
-                            <div class="list_el_title">
-                                Test Title
-                            </div>
-                            <div class="list_el_description">
-                                Test description
-                            </div>
-                        </div>
-                    </div> <div class="list_el">
-                    <img class="list_el_icon"
-                         src=""/>
-                    <div class="list_el_inner">
-                        <div class="list_el_title">
-                            Test Title
-                        </div>
-                        <div class="list_el_description">
-                            Test description
-                        </div>
-                    </div>
-                </div>
-
-
                 </div>
             </div>
         </div>`
@@ -102,9 +28,14 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class FeaturesComponent implements OnInit {
-    constructor() {
+    content: any[]  = [];
+
+    constructor(private dataService: DataService) {
     }
 
     ngOnInit() {
+        this.dataService.sendGetRequest('/pages/2').subscribe((data: any[])=>{
+            this.content = data;
+        })
     }
 }

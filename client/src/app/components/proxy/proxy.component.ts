@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { DataService } from '../../data.service';
 
 @Component({
     selector: 'ng-proxy',
@@ -8,13 +9,13 @@ import {Component, OnInit} from '@angular/core';
                 <div class="inner">
                     <div class="col aos-init aos-animate" data-aos="fade-right">
                         <h2 class="title">
-                            Proxy-Servers all around the world
+                            {{content.title}}
                         </h2>
                         <div class="description">
-                            Stable connectivity with minimal latency from every point of the world.
+                            {{content.description}}
                         </div>
-                        <a class="button" href="#">
-                            Explore
+                        <a class="button" href="{{content.link}}">
+                            {{content.link_text}}
                             <span class="button-icon">
                                     <svg width="7" height="11" viewBox="0 0 7 11" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +28,7 @@ import {Component, OnInit} from '@angular/core';
                         </a>
                     </div>
                     <div class="col banner_right aos-init aos-animate" data-aos="fade-left">
-                        <img class="banner" src="https://mtwhitelabels.com/app/uploads/2021/07/planet.png" />
+                        <img [defaultImage]="defaultImage" [lazyLoad]="content.image" class="banner" />
                     </div>
                 </div>
             </div>
@@ -37,9 +38,15 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class ProxyComponent implements OnInit {
-    constructor() {
+    content: any[]  = [];
+    defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
+
+    constructor(private dataService: DataService) {
     }
 
     ngOnInit() {
+        this.dataService.sendGetRequest('/pages/4').subscribe((data: any[])=>{
+            this.content = data;
+        })
     }
 }

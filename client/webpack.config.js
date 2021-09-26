@@ -84,5 +84,6 @@ module.exports = {
                 minimize: false
             }
         })
-    ]
+    ],
+    devtool: "source-map"
 }

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { DataService } from '../../data.service';
 
 @Component({
     selector: 'ng-benefits',
@@ -6,66 +7,18 @@ import {Component, OnInit} from '@angular/core';
         <div class="section benefits white">
             <div class="container">
                 <h2 class="title aos-init aos-animate" data-aos="fade-right">
-                    Test Title
+                    {{content.title}}
                 </h2>
                 <div class="list aos-init aos-animate" data-aos="fade-up">
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
+                    <div ng-repeat="(key, item) in content.benefits" class="list_el">
+                        <img ng-if="item.icon" class="list_el_icon"
+                             src="{{item.icon}}"/>
                         <div class="list_el_inner">
                             <div class="list_el_title">
-                                Test Title
+                                {{item.title}}
                             </div>
                             <div class="list_el_description">
-                                Test description
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
-                        <div class="list_el_inner">
-                            <div class="list_el_title">
-                                Test Title
-                            </div>
-                            <div class="list_el_description">
-                                Test description
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
-                        <div class="list_el_inner">
-                            <div class="list_el_title">
-                                Test Title
-                            </div>
-                            <div class="list_el_description">
-                                Test description
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
-                        <div class="list_el_inner">
-                            <div class="list_el_title">
-                                Test Title
-                            </div>
-                            <div class="list_el_description">
-                                Test description
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list_el">
-                        <img class="list_el_icon"
-                             src=""/>
-                        <div class="list_el_inner">
-                            <div class="list_el_title">
-                                Test Title
-                            </div>
-                            <div class="list_el_description">
-                                Test description
+                                {{item.description}}
                             </div>
                         </div>
                     </div>
@@ -77,9 +30,14 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class BenefitsComponent implements OnInit {
-    constructor() {
+    content: any[]  = [];
+
+    constructor(private dataService: DataService) {
     }
 
     ngOnInit() {
+        this.dataService.sendGetRequest('/pages/3').subscribe((data: any[])=>{
+            this.content = data;
+        })
     }
 }

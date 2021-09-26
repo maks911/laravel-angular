@@ -12,7 +12,7 @@
                         "outputPath": "dist/spa-app",
                         "index": "src/index.html",
                         "main": "src/main.ts",
-                        "polyfills": "src/polyfills.ts",
+                        //"polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.json",
                         "aot": true
                     }
@@ -20,10 +20,15 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "spa-app:build"
+                        "browserTarget": "spa-app:build",
+                        "sourceMap": {
+                            "scripts": true,
+                            "styles": true,
+                            "vendor": true
+                        }
                     }
                 }
-            }
+            },
         }},
     "defaultProject": "spa-app"
 }
