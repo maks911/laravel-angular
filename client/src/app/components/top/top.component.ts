@@ -14,8 +14,7 @@ import {Component, OnInit} from '@angular/core';
                     <img src="buble-little.svg" class="buble-little"/>
                 </div>
             </div>
-        </div>`,
-    styleUrls: ['./top.component.scss']
+        </div>`
 })
 
 export class TopComponent implements OnInit {
